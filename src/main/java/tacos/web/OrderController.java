@@ -37,8 +37,8 @@ public class OrderController {
 		if(errors.hasErrors()) {
 			return "orderForm";
 		}
-		orderRepo.save(order);
-		sessionStatus.setComplete();
+		orderRepo.save(order); //여기서 order객체 DB에 저장
+		sessionStatus.setComplete(); //order세션 끝났으니 닫기
 	    return "redirect:/";
 	  }
 }

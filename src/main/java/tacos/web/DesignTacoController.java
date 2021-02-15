@@ -75,14 +75,17 @@ public class DesignTacoController {
 	
 	@PostMapping
 	public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
+		//order을 받진 않았지만 보내줘야함
+		//메소드로 모델에 생성한걸 @ModelAttribute Order order라고 함으로써 가져와서 쓴다는 뜻
+		//매개변수를 바인딩하지 않음
 		log.info("design: "+design);
+		
 		if(errors.hasErrors()) {
-			
 			return "design";
 		}
 		
-		Taco saved = tacoRepo.save(design);
-		order.addDesign(saved);
+		Taco saved = tacoRepo.save(design); //Repository이용해서 DB에 저장
+		order.addDesign(saved); //Order 내역에는 일단 추가만 해놓고 /orders/currents로 redirect 
 		
 		return "redirect:/orders/current";
 	}

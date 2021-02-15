@@ -10,7 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Order {
+@Entity
+@Table(name="Taco_Order")
+public class Order implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private Date placedAt;
 	
